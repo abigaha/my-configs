@@ -1,0 +1,47 @@
+Install external dependencies
+sudo apt install gcc g++ gcc-14 g++-14 cmake make clangd cppcheck fzf python3 curl ninja-build openssh-server clang-format gdb rsync zip net-tools xclip
+sudo snap install htop
+
+Install Vim with full functionality
+sudo apt update
+sudo apt install vim-gtk3
+
+Install vim_plus
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+Modify the hosts file
+sudo apt install dnsutils
+dig @8.8.8.8 github.com +short
+
+sudo cp /etc/hosts /etc/hosts.bak # Make a backup first
+sudo vim /etc/hosts
+
+Insert the following content at the end of the file
+GitHub domain acceleration (Updated with the IP you obtained from the dig command above)
+20.205.243.166 github.com
+
+A one-time and long-lasting solution
+Search for SwitchHosts on GitHub and download the corresponding version. After downloading, open a terminal in the directory where the software installation package is located and run the command:
+sudo dpkg -i [enter your software installation package name here]
+
+Then wait for the installation to complete. Open the software, add a host file, select "Remote", and then search for github520 on GitHub. In the text area of github520, find the URL, copy it to the interface that just popped up in SwitchHosts, give the new host file a name, select the update interval, and save it.
+After that, the configuration is complete.
+Refresh
+sudo systemctl restart systemd-resolved
+
+Configure vimrc
+vim ~/.vimrc
+
+Copy the content from the "vim backup.txt" file and paste it into ~/.vimrc
+Enter the following commands:
+:w
+:source ~/.vimrc
+:PlugInstall
+:CocInstall coc-clangd
+:CocInstall coc-cmake
+:Copilot setup
+:wq
+
+Create backup directories
+mkdir -p ~/.vim/backup ~/.vim/swap ~/.vim/undo
